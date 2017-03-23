@@ -27,7 +27,7 @@ public class BoCamarero {
     camarero.setNombre(request.getParameter("nombre"));
     camarero.setApellido(request.getParameter("apellido"));
     DaoCamarero.actualizarCamarero(camarero.getNombre(),camarero.getApellido(),camarero.getIdCamarero());
-       
+    //pendiente devolver a la vista   
         
     }
     

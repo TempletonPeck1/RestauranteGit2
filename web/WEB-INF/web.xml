@@ -44,10 +44,6 @@
         <servlet-name>MostrarServletAdministrador</servlet-name>
         <servlet-class>controladoresServlet.MostrarServletAdministrador</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>FormularioServletCamarero</servlet-name>
-        <url-pattern>/formularioServletCamarero</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>mostrarServletCamarero</servlet-name>
         <servlet-class>controladoresServlet.mostrarServletCamarero</servlet-class>
@@ -91,6 +87,10 @@
     <servlet-mapping>
         <servlet-name>MostrarServletAdministrador</servlet-name>
         <url-pattern>/mostrarServletAdministrador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FormularioServletCamarero</servlet-name>
+        <url-pattern>/controladorServletCamarero</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login.html</welcome-file>
