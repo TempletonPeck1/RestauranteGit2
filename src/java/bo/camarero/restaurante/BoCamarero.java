@@ -20,14 +20,25 @@ import javax.servlet.http.HttpServletResponse;
 public class BoCamarero {
     
     
+    public static void procesarUpdateCamarero(HttpServletRequest request,HttpServletResponse response) throws ClassNotFoundException, SQLException{
+        
+    Camarero camarero=new Camarero();
+    camarero.setIdCamarero(request.getParameter("idcamarero"));
+    camarero.setNombre(request.getParameter("nombre"));
+    camarero.setApellido(request.getParameter("apellido"));
+    DaoCamarero.actualizarCamarero(camarero.getNombre(),camarero.getApellido(),camarero.getIdCamarero());
+       
+        
+    }
+    
     public static void procesarInsertarPeticionCamarero(HttpServletRequest request,HttpServletResponse response) throws SQLException, ClassNotFoundException, IOException{
     //orientacion a objetos
     Camarero camarero=new Camarero();
     camarero.setIdCamarero(request.getParameter("idcamarero"));
     camarero.setNombre(request.getParameter("nombre"));
-    camarero.setApellido("apellido");
+    camarero.setApellido(request.getParameter("apellido"));
     DaoCamarero.insertarCamarero(camarero.getIdCamarero(), camarero.getNombre(), camarero.getApellido());
-    response.sendRedirect("/Restaurante/mostrarServletCamarero");
+    response.sendRedirect("/RestauranteGit/mostrarServletCamarero");
      
 
 }

@@ -9,6 +9,7 @@ import Utilidades.ConexionRestaurante;
 import entidades.Camarero;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -38,7 +39,7 @@ public class DaoCamarero {
 }
     
     
-    public static ResultSet verCamareros() throws ClassNotFoundException, SQLException{
+  public static ResultSet verCamareros() throws ClassNotFoundException, SQLException{
     
       Connection conexion=ConexionRestaurante.conexionRestaurante();
       Statement sentencia = conexion.createStatement();
@@ -48,9 +49,18 @@ public class DaoCamarero {
      return lista_camareros;
     
 }
-   public static void actualizarCamarero(){
+   public static void actualizarCamarero(String nombre,String apellido,String idcamarero) throws ClassNotFoundException, SQLException{
        
-       
+        Connection conexion=ConexionRestaurante.conexionRestaurante();
+        String sql="update camarero set nombre=? and apellido=? where idcamarero=?";
+        PreparedStatement actualizar=conexion.prepareStatement(sql);
+        actualizar.setString(1, nombre);
+        actualizar.setString(2, apellido);
+        actualizar.setString(3, idcamarero);
+        int filas=actualizar.executeUpdate(sql);
+        System.out.println("N filas afectadas "+filas);
+        actualizar.close();
+        conexion.close();
        
    }
  

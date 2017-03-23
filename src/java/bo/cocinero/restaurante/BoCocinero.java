@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BoCocinero {
     
     
+    
     public static void procesarPeticionInsertarCocinero(HttpServletRequest request,HttpServletResponse response) throws ClassNotFoundException, SQLException, IOException{
     
     Cocinero masterChef=new Cocinero();
