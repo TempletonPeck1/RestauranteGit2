@@ -45,7 +45,7 @@ public class DaoAdministrador {
     administrador.setPasswordAdministrador(request.getParameter("password_administrador"));
     
     insertarAdministrador(administrador.getUsuarioAdministrador(),administrador.getPasswordAdministrador(),administrador.getNombreAdministrador(),administrador.getApellidoAdministrador());
-    response.sendRedirect("/Restaurante/mostrarServletAdministrador");
+    response.sendRedirect("/RestauranteGit/login.html");
      
 
 }
