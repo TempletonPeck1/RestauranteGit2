@@ -48,7 +48,11 @@ public class DaoCamarero {
      return lista_camareros;
     
 }
-    //pasara a ser clase de negocio
+   public static void actualizarCamarero(){
+       
+       
+       
+   }
  
     
     //fatan metodos update & delete

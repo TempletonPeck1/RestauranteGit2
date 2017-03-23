@@ -31,7 +31,7 @@ public class ControladorServletCamarero extends HttpServlet {
         
         }
         else{
-            response.sendRedirect("/Restaurante/login.html");
+            response.sendRedirect("/RestauranteGit/login.html");
         }
         }
         
