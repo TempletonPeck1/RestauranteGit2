@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+    <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Actualizaciones Camareros</title>
+        <title>Actualizaciones Camareros</title>
 
         <link href="assets/demo.css" rel="stylesheet" type="text/css"/>
         <link href="assets/form-register.css" rel="stylesheet" type="text/css"/>
-</head>
+    </head>
     <ul>
         <li><a href="index.htm">Index</a></li>
         <li><a href="registroCamarero.html" class="active">Actualizar Camarero</a></li>
         <li><a href="login.html">Login</a></li>
-       
+
     </ul>
 
 
@@ -34,7 +34,7 @@
                         <h1>Actualizar Camarero</h1>
                     </div>
 
-                   
+
                     <div class="form-row">
                         <label>
                             <span>Nombre</span>
@@ -48,14 +48,19 @@
                             <input type="text" name="apellido">
                         </label>
                     </div>
-                    
-                     <div class="form-row">
+
+                    <div class="form-row">
                         <label>
                             <span>IdCamarero</span>
                             <input type="text" name="idcamarero">
                         </label>
                     </div>
-
+                    <div class="form-row">
+                       
+                     <!--paso un valor oculto al controlador que update-->     
+                     <input type="hidden" name="action" value="update">
+                        
+                    </div>
                     <div class="form-row">
                         <label class="form-checkbox">
                             <input type="checkbox" name="checkbox" checked>

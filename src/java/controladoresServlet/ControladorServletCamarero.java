@@ -23,44 +23,52 @@ public class ControladorServletCamarero extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
 
+        //Estamos comprobando si el usuario esta logeado
         HttpSession misession = (HttpSession) request.getSession();
-        boolean log=(boolean) misession.getAttribute("ok");
-        if(log==true){
-        
-            BoCamarero.procesarInsertarPeticionCamarero(request, response);
-        
-        }
-        else{
+        boolean log = (boolean) misession.getAttribute("ok");
+        //si el usuario esta logeado
+        if (log == true) {
+            
+            //recupera el action del formulario
+            String action = request.getParameter("action");
+
+            if (action.contains("update")) {
+
+                BoCamarero.procesarUpdateCamarero(request, response);
+
+            } else {
+
+                BoCamarero.procesarInsertarPeticionCamarero(request, response);
+
+            }
+
+        } 
+        //si el usuario no esta loegado hace el else{}
+        else {
             response.sendRedirect("/RestauranteGit/login.html");
         }
-        }
-        
-           
+    }
+
                   //ConexionRestaurante.procesarPeticionCamarero(request, response);
-                
                  //ConexionRestaurante.procesarPeticion(request);
-                  //response.sendRedirect("/Restaurante/mostrarServletCamarero");
-                 //Aqui empiezar la response de este Servlet
+    //response.sendRedirect("/Restaurante/mostrarServletCamarero");
+    //Aqui empiezar la response de este Servlet
                 /*response.setContentType("text/html;charset=UTF-8");
-                try (PrintWriter out = response.getWriter()) {
-                    /* TODO output your page here. You may use following sample code. */
-                    /*out.println("<!DOCTYPE html>");
-                    out.println("<html>");
-                    out.println("<head>");
-                    out.println("<title>Servlet FormularioServletCamarero</title>");
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<h1>Datos Insertados</h1>");
-                    out.println("<h1>Datos Insertados:" + idCamarero + "</h1>");
-                    out.println("<h1>Datos Insertados:" + nombre + "</h1>");
-                    out.println("<h1>Datos Insertados:" + apellido + "</h1>");
-                    out.println("</body>");
-                    out.println("</html>");
-                }*/
-             
-         
-        
-   
+     try (PrintWriter out = response.getWriter()) {
+     /* TODO output your page here. You may use following sample code. */
+    /*out.println("<!DOCTYPE html>");
+     out.println("<html>");
+     out.println("<head>");
+     out.println("<title>Servlet FormularioServletCamarero</title>");
+     out.println("</head>");
+     out.println("<body>");
+     out.println("<h1>Datos Insertados</h1>");
+     out.println("<h1>Datos Insertados:" + idCamarero + "</h1>");
+     out.println("<h1>Datos Insertados:" + nombre + "</h1>");
+     out.println("<h1>Datos Insertados:" + apellido + "</h1>");
+     out.println("</body>");
+     out.println("</html>");
+     }*/
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -85,11 +93,9 @@ public class ControladorServletCamarero extends HttpServlet {
         }
     }
 
-    
     @Override
     public String getServletInfo() {
         return "Short description";
     }
 
 }
-
