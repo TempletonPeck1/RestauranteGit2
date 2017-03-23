@@ -49,17 +49,7 @@ public class DaoCamarero {
     
 }
     //pasara a ser clase de negocio
-    public static void procesarPeticionCamarero(HttpServletRequest request,HttpServletResponse response) throws SQLException, ClassNotFoundException, IOException{
-    //orientacion a objetos
-    Camarero camarero=new Camarero();
-    camarero.setIdCamarero(request.getParameter("idcamarero"));
-    camarero.setNombre(request.getParameter("nombre"));
-    camarero.setApellido("apellido");
-    insertarCamarero(camarero.getIdCamarero(), camarero.getNombre(), camarero.getApellido());
-    response.sendRedirect("/Restaurante/mostrarServletCamarero");
-     
-
-}
+ 
     
     //fatan metodos update & delete
     

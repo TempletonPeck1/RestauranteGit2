@@ -1,6 +1,7 @@
 package controladoresServlet;
 
 import Utilidades.ConexionRestaurante;
+import bo.camarero.restaurante.BoCamarero;
 import dao.camarero.restaurante.DaoCamarero;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 //@WebServlet(name="FormularioServletCamarero", urlPatterns={"/Restaurante/formularioServletCamarero"})
-public class FormularioServletCamarero extends HttpServlet {
+public class ControladorServletCamarero extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
@@ -26,7 +27,7 @@ public class FormularioServletCamarero extends HttpServlet {
         boolean log=(boolean) misession.getAttribute("ok");
         if(log==true){
         
-            DaoCamarero.procesarPeticionCamarero(request, response);
+            BoCamarero.procesarInsertarPeticionCamarero(request, response);
         
         }
         else{
@@ -66,9 +67,9 @@ public class FormularioServletCamarero extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FormularioServletCamarero.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorServletCamarero.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(FormularioServletCamarero.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorServletCamarero.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -78,9 +79,9 @@ public class FormularioServletCamarero extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FormularioServletCamarero.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorServletCamarero.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(FormularioServletCamarero.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorServletCamarero.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

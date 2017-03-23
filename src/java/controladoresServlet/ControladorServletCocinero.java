@@ -5,8 +5,9 @@
  */
 package controladoresServlet;
 
-import dao.admistrador.restaurante.DaoAdministrador;
-import dao.camarero.restaurante.DaoCamarero;
+import Utilidades.ConexionRestaurante;
+import bo.cocinero.restaurante.BoCocinero;
+import dao.cocinero.restaurante.DaoCocinero;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -16,47 +17,47 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+/**
+ *
+ * @author martaperal
+ */
+public class ControladorServletCocinero extends HttpServlet {
 
-public class FormularioServletAdministrado extends HttpServlet {
-
-    
-
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException {
         
-       // HttpSession misession = (HttpSession) request.getSession();
-       // boolean log=(boolean) misession.getAttribute("ok");
-       // if(log==true){
+       //ConexionRestaurante.procesarPeticionCocinero(request, response);
         
-            DaoAdministrador.procesarPeticionAdministrador(request, response);
-        
-       // }
-       // else{
-            //response.sendRedirect("/Restaurante/login.html");
-        //}
-        
+        BoCocinero.procesarPeticionInsertarCocinero(request, response);
+        /*ConexionRestaurante.procesarPeticion(request);
+        /*response.sendRedirect("/Restaurante/mostrarServletCocinero");
+        /*response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+          
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet FormularioServletCocinero</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet FormularioServletCocinero at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }*/
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+ 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(FormularioServletAdministrado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorServletCocinero.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FormularioServletAdministrado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorServletCocinero.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -74,9 +75,9 @@ public class FormularioServletAdministrado extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(FormularioServletAdministrado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorServletCocinero.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FormularioServletAdministrado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorServletCocinero.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
