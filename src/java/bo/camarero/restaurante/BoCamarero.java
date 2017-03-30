@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BoCamarero {
     
     
-    public static void procesarUpdateCamarero(HttpServletRequest request,HttpServletResponse response) throws ClassNotFoundException, SQLException, IOException{
+    public static void procesarPeticionUpdateCamareroById(HttpServletRequest request,HttpServletResponse response) throws ClassNotFoundException, SQLException, IOException{
         
     Camarero camarero=new Camarero();
     camarero.setIdCamarero(request.getParameter("idcamarero"));
@@ -28,18 +28,29 @@ public class BoCamarero {
     camarero.setApellido(request.getParameter("apellido"));
     DaoCamarero.actualizarCamarero(camarero.getNombre(),camarero.getApellido(),camarero.getIdCamarero());
     //pendiente devolver a la vista  para mostrar el resultado 
-    response.sendRedirect("/RestauranteGit/altas.htm");
+    
     }
     
-    public static void procesarInsertarPeticionCamarero(HttpServletRequest request,HttpServletResponse response) throws SQLException, ClassNotFoundException, IOException{
+    public static void procesarPeticionInsertarCamarero(HttpServletRequest request,HttpServletResponse response) throws SQLException, ClassNotFoundException, IOException{
     //orientacion a objetos
     Camarero camarero=new Camarero();
     camarero.setIdCamarero(request.getParameter("idcamarero"));
     camarero.setNombre(request.getParameter("nombre"));
     camarero.setApellido(request.getParameter("apellido"));
     DaoCamarero.insertarCamarero(camarero.getIdCamarero(), camarero.getNombre(), camarero.getApellido());
+    
+    //Desde el controlador llamamos a la vista
     response.sendRedirect("/RestauranteGit/mostrarServletCamarero");
      
 
 }
+    public static void procesarPeticionBorrarCamareroById(HttpServletRequest request,HttpServletResponse response) throws ClassNotFoundException, SQLException, IOException{
+        Camarero camarero=new Camarero();
+        camarero.setIdCamarero(request.getParameter("idcamarero"));
+        //llamamos al DAO y a su metodo
+        DaoCamarero.borrarCamareroId(camarero.getIdCamarero());
+        //Desde el controlador dirigimos a la vista 
+        //Pasamos la redirección del controlador a la vista
+        //response.sendRedirect("/RestauranteGit/mostrarServletCamarero");
+    }
 }

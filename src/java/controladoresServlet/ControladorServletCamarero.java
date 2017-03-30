@@ -11,64 +11,59 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.BasicConfigurator;
 
 //@WebServlet(name="FormularioServletCamarero", urlPatterns={"/Restaurante/formularioServletCamarero"})
 public class ControladorServletCamarero extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
-
+        
+        //Ejemplo Nuestro configurador básico
+               // BasicConfigurator.configure();
+		//org.apache.log4j.Logger logs = org.apache.log4j.Logger.getLogger("Logger de Ejemplo");
+		
+		
         //Estamos comprobando si el usuario esta logeado
         HttpSession misession = (HttpSession) request.getSession();
+       // logs.info("Recupero la sesion");
         boolean log = (boolean) misession.getAttribute("ok");
-        //si el usuario esta logeado
+        String action = request.getParameter("action");
+        //logs.info("usuario registrado");
+// + nuevos action
         if (log == true) {
-            
-            //recupera el action del formulario
-            String action = request.getParameter("action");
 
+            //recupera el action del formulario
             if (action.contains("update")) {
 
-                BoCamarero.procesarUpdateCamarero(request, response);
-
-            } else {
-
-                BoCamarero.procesarInsertarPeticionCamarero(request, response);
-
+                BoCamarero.procesarPeticionUpdateCamareroById(request, response);
+                 /*RequestDispatcher rs=request.getRequestDispatcher("pagina.jsp");
+                 rs.forward(request, response);*/
+            }
+            if (action.contains("insertar")) {
+                BoCamarero.procesarPeticionInsertarCamarero(request, response);
+               
+               
+                response.sendRedirect("/RestauranteGit/altas.htm");
+            }
+            if (action.contains("borrar")) {
+                BoCamarero.procesarPeticionBorrarCamareroById(request, response);
+                response.sendRedirect("/RestauranteGit/mostrarServletCamarero");
             }
 
-        } 
-        //si el usuario no esta loegado hace el else{}
-        else {
-            response.sendRedirect("/RestauranteGit/login.html");
         }
+            
+         //si el usuario no esta loegado hace el else{}
+        response.sendRedirect("/RestauranteGit/login.html");
+
     }
 
-                  //ConexionRestaurante.procesarPeticionCamarero(request, response);
-                 //ConexionRestaurante.procesarPeticion(request);
-    //response.sendRedirect("/Restaurante/mostrarServletCamarero");
-    //Aqui empiezar la response de este Servlet
-                /*response.setContentType("text/html;charset=UTF-8");
-     try (PrintWriter out = response.getWriter()) {
-     /* TODO output your page here. You may use following sample code. */
-    /*out.println("<!DOCTYPE html>");
-     out.println("<html>");
-     out.println("<head>");
-     out.println("<title>Servlet FormularioServletCamarero</title>");
-     out.println("</head>");
-     out.println("<body>");
-     out.println("<h1>Datos Insertados</h1>");
-     out.println("<h1>Datos Insertados:" + idCamarero + "</h1>");
-     out.println("<h1>Datos Insertados:" + nombre + "</h1>");
-     out.println("<h1>Datos Insertados:" + apellido + "</h1>");
-     out.println("</body>");
-     out.println("</html>");
-     }*/
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

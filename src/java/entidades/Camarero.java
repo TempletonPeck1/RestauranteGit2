@@ -8,6 +8,20 @@ public class Camarero {
     String nombre; 
     String apellido;
 
+    public Camarero(String idCamarero, String nombre, String apellido) {
+        this.idCamarero = idCamarero;
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+
+  public Camarero(){
+      
+  }
+  
+  public Camarero(String idCamarero){
+      this.idCamarero=idCamarero;
+  }
+
     public String getIdCamarero() {
         return idCamarero;
     }

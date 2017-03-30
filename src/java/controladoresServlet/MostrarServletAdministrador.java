@@ -5,8 +5,11 @@
  */
 package controladoresServlet;
 
+import entidades.Administrador;
+import entidades.Camarero;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +26,8 @@ public class MostrarServletAdministrador extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
+            ArrayList<Camarero> camareros;
         
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -31,6 +36,8 @@ public class MostrarServletAdministrador extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet MostrarServletAdministrador at " + request.getContextPath() + "</h1>");
+            
+            
             out.println("</body>");
             out.println("</html>");
         }
