@@ -5,6 +5,7 @@
  */
 package controladoresServlet;
 
+import Utilidades.ConexionRestaurante;
 import Utilidades.VerificarLogin;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,28 +13,36 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.BasicConfigurator;
 
+@WebServlet(name = "LogRestaurante", urlPatterns = {"/logRestaurante"})
 public class LogRestaurante extends HttpServlet {
+
+    private final static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(LogRestaurante.class);
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
-
-        //solicito los parametros de login.html
+        
+        BasicConfigurator.configure();
+        
         String user_login = request.getParameter("login_usuario");
         String pass_login = request.getParameter("login_password");
-
+        
+        log.debug("Recibendo parametros: "+user_login+"..."+pass_login);
+        
         boolean verificarUsuario = VerificarLogin.comprobarLogin(user_login, pass_login);
 
         if (verificarUsuario == true) {
-                //esta variable nos sirve para comprobar 
-            //si el usuario esta logeado en otros sevlets
-            
+               
+
             HttpSession sesion_login = request.getSession();
-            //guardo en la sesion 
+            log.debug("Sesion Creada: "+sesion_login);
+            
             sesion_login.setAttribute("login_usuario", user_login);
             sesion_login.setAttribute("login_password", pass_login);
             sesion_login.setAttribute("ok", verificarUsuario);
