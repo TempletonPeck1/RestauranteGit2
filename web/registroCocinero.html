@@ -37,21 +37,21 @@
                     <div class="form-row">
                         <label>
                             <span>IdCocinero</span>
-                            <input type="text" name="idcocinero">
+                            <input type="text" name="idcocinero" id="cocinero">
                         </label>
                     </div>
 
                     <div class="form-row">
                         <label>
                             <span>Nombre</span>
-                            <input type="text" name="nombre">
+                            <input type="text" name="nombre" id="nombre">
                         </label>
                     </div>
 
                     <div class="form-row">
                         <label>
                             <span>Apellido</span>
-                            <input type="text" name="apellido">
+                            <input type="text" name="apellido" id="apellido">
                         </label>
                     </div>
 
@@ -63,11 +63,11 @@
                     </div>
 
                     <div class="form-row">
-                        <button type="submit">Registrar</button>
+                        <button type="submit" onsubmit="return valida(this)">Registrar</button>
                     </div>
 
                 </div>
-
+                <p id="submit"></p>
                 <a href="index.html" class="form-log-in-with-existing">Estas registrado? ir a Login &rarr;</a>
 
             </div>
